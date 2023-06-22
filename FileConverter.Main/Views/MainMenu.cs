@@ -2,21 +2,24 @@
 using ReaLTaiizor.Forms;
 using System.Diagnostics;
 using System.Drawing.Imaging;
+using Xabe.FFmpeg;
 
 namespace FileConverter.Main.Views
 {
     public partial class MainMenu : LostForm
     {
         private string[] imgFileTypes = { ".jpeg", ".png", ".ico", ".gif", ".webp" };
-        private string[] videoFileTypes = { ".mp4", ".wav" };
-        private string[] audioFileTypes = { "", "" };
-        private Stream fileStream;
+        private string[] videoFileTypes = { ".mp4", ".avi", ".webm", ".mkv", ".flv", ".vob", ".wmv", ".amv" };
+        private string[] audioFileTypes = { ".mp3", ".wav", ".wma"};
+        private Stream? fileStream;
         private string fileName;
+        OpenFileDialog openFileDialog;
 
         public MainMenu()
         {
             fileName = string.Empty;
             InitializeComponent();
+            openFileDialog = new OpenFileDialog();
         }
         private void MainMenu_Load(object sender, EventArgs e)
         {
@@ -42,11 +45,13 @@ namespace FileConverter.Main.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.CheckFileExists = true;
             openFileDialog.AddExtension = true;
             openFileDialog.Multiselect = false;
-            openFileDialog.Filter = "Images (*.jpeg; *.png; *.ico; *.gif; *.webp)| *.jpeg; *.png; *.ico; *.gif; *.webp";
+            openFileDialog.Filter =
+                "Media " +
+                "(*.jpeg; *.png; *.ico; *.gif; *.webp; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma)" +
+                "| *.jpeg; *.png; *.ico; *.gif; *.webp; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 materialComboBox1.Enabled = true;
@@ -82,34 +87,55 @@ namespace FileConverter.Main.Views
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
+            label2.Visible = false;
             string convSelected = string.Empty;
             if (materialComboBox1.SelectedValue != null)
             {
                 convSelected = (string)materialComboBox1.SelectedValue;
                 if (fileStream != null)
                 {
-                    Bitmap b = (Bitmap)Bitmap.FromStream(fileStream);
+                    if (imgFileTypes.Contains(convSelected))
+                    {
+                        Bitmap b = (Bitmap)Bitmap.FromStream(fileStream);
 
-                    if (convSelected == ".png")
-                    {
-                        b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Png);
+                        if (convSelected == ".png")
+                        {
+                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Png);
+                        }
+                        else if (convSelected == ".jpeg")
+                        {
+                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Jpeg);
+                        }
+                        else if (convSelected == ".ico")
+                        {
+                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Icon);
+                        }
+                        else if (convSelected == ".gif")
+                        {
+                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Gif);
+                        }
+                        else if (convSelected == ".webp")
+                        {
+                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Webp);
+                        } 
                     }
-                    else if (convSelected == ".jpeg")
+                    else if (videoFileTypes.Contains(convSelected))
                     {
-                        b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Jpeg);
+                        string outputFile = Path.ChangeExtension(
+                                Properties.Settings.Default.DownloadPath + @"\" + openFileDialog.SafeFileName,
+                                convSelected
+                                );
+                        ConvertVideo(outputFile, convSelected);
                     }
-                    else if (convSelected == ".ico")
+                    else if (audioFileTypes.Contains(convSelected))
                     {
-                        b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Icon);
+                        string outputFile = Path.ChangeExtension(
+                                Properties.Settings.Default.DownloadPath + @"\" + openFileDialog.SafeFileName,
+                                convSelected
+                                );
+                        ConvertVideo(outputFile, convSelected);
                     }
-                    else if (convSelected == ".gif")
-                    {
-                        b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Gif);
-                    }
-                    else if (convSelected == ".webp")
-                    {
-                        b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Webp);
-                    }
+                     
 
 
                     label2.Visible = true;
@@ -136,7 +162,10 @@ namespace FileConverter.Main.Views
             materialComboBox1.Enabled = false;
             materialButton1.Enabled = false;
             buttonDescargas.Visible = false;
-            fileStream.Dispose();
+            if (fileStream != null)
+            {
+                fileStream.Dispose();
+            }
             label1.Text = string.Empty;
             label2.Visible = false;
         }
@@ -148,6 +177,31 @@ namespace FileConverter.Main.Views
             buttonReset.Text = LanguageHelper.GetString("Reset");
             materialButton1.Text = LanguageHelper.GetString("Convert");
             label2.Text = LanguageHelper.GetString("ConvertedText");
+        }
+        private void ConvertImage()
+        {
+
+        }
+        private void ConvertAudio()
+        {
+
+        }
+        private async void ConvertVideo(string outputFile, string convSelected)
+        {
+            if (File.Exists(outputFile))
+            {
+                File.Delete(outputFile); 
+            }
+            var conversion = await FFmpeg.Conversions.FromSnippet.Convert(openFileDialog.FileName, outputFile);
+            if (convSelected == ".amv")
+            {
+                conversion.AddParameter("-ac 1");
+                conversion.AddParameter("-ar 22050");
+                conversion.SetFrameRate(30);
+                conversion.AddParameter("-block_size 735");
+                conversion.AddParameter("-vstrict -1");
+            }
+            await conversion.Start();
         }
     }
 }
