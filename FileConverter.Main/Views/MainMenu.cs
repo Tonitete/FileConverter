@@ -34,6 +34,7 @@ namespace FileConverter.Main.Views
             buttonDescargas.Visible = false;
             label2.Visible = false;
             PopulateStrings();
+            this.MaximizeBox = false;
         }
 
         private void socialButton1_Click(object sender, EventArgs e)
