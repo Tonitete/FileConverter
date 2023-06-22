@@ -20,3 +20,8 @@ If you find some file type missing feel free to create a suggestion [here](https
 
 ## Download
 [Click here!](https://mega.nz/file/tedTjSJL#H9dmK0eSdZbXn2qGkTan1ZRYPGzMhC48ygSSRalTkl0)
+
+
+## Languages
+Want to translate this to your language? Contact me opening a issue [here](https://github.com/Tonitete/FileConverter/issues/new) and help me translating!<br>
+Base languages are english and spanish and you need to know one or the other. Thanks for your support!
