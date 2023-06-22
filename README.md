@@ -19,4 +19,4 @@ This program is portable, this means you don't have to install it, simply extrac
 If you find some file type missing feel free to create a suggestion [here](https://github.com/Tonitete/FileConverter/issues/new).
 
 ## Download
-[Click here!](https://mega.nz/file/1XskGa7S#ZfKgAmVttzC6oSxCK_wP2GoLAIICL45w-1KPQSFE5aA)
+[Click here!](https://mega.nz/file/tedTjSJL#H9dmK0eSdZbXn2qGkTan1ZRYPGzMhC48ygSSRalTkl0)
