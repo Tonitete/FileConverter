@@ -1,7 +1,7 @@
 # FileConverter
 
 ### ES
-Un programa para Windows sencillo para convertir imagenes, audio y video de un tipo a otro. 
+Un programa para Windows sencillo para convertir imagenes, audio y video de un tipo a otro. ¡También acepta PDF! 
 <br>
 ¿Cansado de usar conversores online? ¡Prueba este!
 <br>
@@ -10,7 +10,7 @@ El programa es portable, lo que significa que no hay que instalarlo, simplemente
 Si echas en falta un tipo de archivo puedes crear una sugerencia [aquí](https://github.com/Tonitete/FileConverter/issues/new).
 
 ### EN
-A simple program for Windows to convert images, audio and video from a type to another.
+A simple program for Windows to convert images, audio and video from a type to another. Also accepts PDF!
 <br>
 Tired of using online converters? Try this!
 <br>
