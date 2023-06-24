@@ -29,168 +29,167 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
-            this.button1 = new ReaLTaiizor.Controls.Button();
-            this.materialButton1 = new ReaLTaiizor.Controls.MaterialButton();
-            this.socialButton1 = new ReaLTaiizor.Controls.SocialButton();
-            this.materialComboBox1 = new ReaLTaiizor.Controls.MaterialComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonDescargas = new ReaLTaiizor.Controls.Button();
-            this.buttonReset = new ReaLTaiizor.Controls.Button();
-            this.SuspendLayout();
+            button1 = new ReaLTaiizor.Controls.Button();
+            materialButton1 = new ReaLTaiizor.Controls.MaterialButton();
+            socialButton1 = new ReaLTaiizor.Controls.SocialButton();
+            materialComboBox1 = new ReaLTaiizor.Controls.MaterialComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            buttonDescargas = new ReaLTaiizor.Controls.Button();
+            buttonReset = new ReaLTaiizor.Controls.Button();
+            SuspendLayout();
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Image = null;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.button1.Location = new System.Drawing.Point(100, 200);
-            this.button1.Name = "button1";
-            this.button1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Seleccionar Archivo";
-            this.button1.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.BackColor = Color.Transparent;
+            button1.EnteredColor = Color.FromArgb(32, 34, 37);
+            button1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Image = null;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.InactiveColor = Color.FromArgb(32, 34, 37);
+            button1.Location = new Point(100, 200);
+            button1.Name = "button1";
+            button1.PressedColor = Color.FromArgb(165, 37, 37);
+            button1.Size = new Size(120, 40);
+            button1.TabIndex = 1;
+            button1.Text = "Seleccionar Archivo";
+            button1.TextAlignment = StringAlignment.Center;
+            button1.Click += button1_Click;
             // 
             // materialButton1
             // 
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            this.materialButton1.Location = new System.Drawing.Point(350, 200);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MaximumSize = new System.Drawing.Size(120, 40);
-            this.materialButton1.MinimumSize = new System.Drawing.Size(120, 40);
-            this.materialButton1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(120, 40);
-            this.materialButton1.TabIndex = 3;
-            this.materialButton1.Text = "Convertir";
-            this.materialButton1.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            materialButton1.Location = new Point(350, 200);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MaximumSize = new Size(120, 40);
+            materialButton1.MinimumSize = new Size(120, 40);
+            materialButton1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(120, 40);
+            materialButton1.TabIndex = 3;
+            materialButton1.Text = "Convertir";
+            materialButton1.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
             // socialButton1
             // 
-            this.socialButton1.DownEllipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.socialButton1.HoverEllipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.socialButton1.Image = global::FileConverter.Main.Properties.Resources.icons8_settings_50;
-            this.socialButton1.Location = new System.Drawing.Point(521, 39);
-            this.socialButton1.Name = "socialButton1";
-            this.socialButton1.NormalEllipseColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(76)))), ((int)(((byte)(85)))));
-            this.socialButton1.Size = new System.Drawing.Size(54, 54);
-            this.socialButton1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.socialButton1.TabIndex = 4;
-            this.socialButton1.Text = "socialButton1";
-            this.socialButton1.Click += new System.EventHandler(this.socialButton1_Click);
+            socialButton1.DownEllipseColor = Color.FromArgb(153, 34, 34);
+            socialButton1.HoverEllipseColor = Color.FromArgb(32, 34, 37);
+            socialButton1.Image = Properties.Resources.icons8_settings_50;
+            socialButton1.Location = new Point(521, 39);
+            socialButton1.Name = "socialButton1";
+            socialButton1.NormalEllipseColor = Color.FromArgb(66, 76, 85);
+            socialButton1.Size = new Size(54, 54);
+            socialButton1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            socialButton1.TabIndex = 4;
+            socialButton1.Text = "socialButton1";
+            socialButton1.Click += socialButton1_Click;
             // 
             // materialComboBox1
             // 
-            this.materialComboBox1.AutoResize = false;
-            this.materialComboBox1.BackColor = System.Drawing.Color.Black;
-            this.materialComboBox1.Depth = 0;
-            this.materialComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox1.DropDownHeight = 174;
-            this.materialComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox1.DropDownWidth = 121;
-            this.materialComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox1.ForeColor = System.Drawing.Color.White;
-            this.materialComboBox1.FormattingEnabled = true;
-            this.materialComboBox1.IntegralHeight = false;
-            this.materialComboBox1.ItemHeight = 43;
-            this.materialComboBox1.Location = new System.Drawing.Point(226, 109);
-            this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(121, 49);
-            this.materialComboBox1.StartIndex = 0;
-            this.materialComboBox1.TabIndex = 5;
+            materialComboBox1.AutoResize = false;
+            materialComboBox1.BackColor = Color.Black;
+            materialComboBox1.Depth = 0;
+            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
+            materialComboBox1.DropDownHeight = 174;
+            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            materialComboBox1.DropDownWidth = 121;
+            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialComboBox1.ForeColor = Color.White;
+            materialComboBox1.FormattingEnabled = true;
+            materialComboBox1.IntegralHeight = false;
+            materialComboBox1.ItemHeight = 43;
+            materialComboBox1.Location = new Point(226, 109);
+            materialComboBox1.MaxDropDownItems = 4;
+            materialComboBox1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
+            materialComboBox1.Name = "materialComboBox1";
+            materialComboBox1.Size = new Size(121, 49);
+            materialComboBox1.StartIndex = 0;
+            materialComboBox1.TabIndex = 5;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(100, 176);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 21);
-            this.label1.TabIndex = 6;
+            label1.AutoSize = true;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(100, 176);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 21);
+            label1.TabIndex = 6;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(226, 334);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 21);
-            this.label2.TabIndex = 7;
+            label2.AutoSize = true;
+            label2.ForeColor = Color.FromArgb(0, 192, 0);
+            label2.Location = new Point(226, 334);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 21);
+            label2.TabIndex = 7;
             // 
             // buttonDescargas
             // 
-            this.buttonDescargas.BackColor = System.Drawing.Color.Transparent;
-            this.buttonDescargas.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.buttonDescargas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonDescargas.Image = null;
-            this.buttonDescargas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDescargas.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.buttonDescargas.Location = new System.Drawing.Point(226, 405);
-            this.buttonDescargas.Name = "buttonDescargas";
-            this.buttonDescargas.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.buttonDescargas.Size = new System.Drawing.Size(120, 40);
-            this.buttonDescargas.TabIndex = 8;
-            this.buttonDescargas.Text = "Ver en carpeta";
-            this.buttonDescargas.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.buttonDescargas.Click += new System.EventHandler(this.buttonDescargas_Click);
+            buttonDescargas.BackColor = Color.Transparent;
+            buttonDescargas.EnteredColor = Color.FromArgb(32, 34, 37);
+            buttonDescargas.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonDescargas.Image = null;
+            buttonDescargas.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonDescargas.InactiveColor = Color.FromArgb(32, 34, 37);
+            buttonDescargas.Location = new Point(226, 405);
+            buttonDescargas.Name = "buttonDescargas";
+            buttonDescargas.PressedColor = Color.FromArgb(165, 37, 37);
+            buttonDescargas.Size = new Size(120, 40);
+            buttonDescargas.TabIndex = 8;
+            buttonDescargas.Text = "Ver en carpeta";
+            buttonDescargas.TextAlignment = StringAlignment.Center;
+            buttonDescargas.Click += buttonDescargas_Click;
             // 
             // buttonReset
             // 
-            this.buttonReset.BackColor = System.Drawing.Color.Transparent;
-            this.buttonReset.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.buttonReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.buttonReset.Image = null;
-            this.buttonReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonReset.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.buttonReset.Location = new System.Drawing.Point(5, 39);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.buttonReset.Size = new System.Drawing.Size(67, 25);
-            this.buttonReset.TabIndex = 9;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            buttonReset.BackColor = Color.Transparent;
+            buttonReset.EnteredColor = Color.FromArgb(32, 34, 37);
+            buttonReset.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonReset.Image = null;
+            buttonReset.ImageAlign = ContentAlignment.MiddleLeft;
+            buttonReset.InactiveColor = Color.FromArgb(32, 34, 37);
+            buttonReset.Location = new Point(5, 39);
+            buttonReset.Name = "buttonReset";
+            buttonReset.PressedColor = Color.FromArgb(165, 37, 37);
+            buttonReset.Size = new Size(67, 25);
+            buttonReset.TabIndex = 9;
+            buttonReset.Text = "Reset";
+            buttonReset.TextAlignment = StringAlignment.Center;
+            buttonReset.Click += buttonReset_Click;
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 450);
-            this.Controls.Add(this.buttonReset);
-            this.Controls.Add(this.buttonDescargas);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.materialComboBox1);
-            this.Controls.Add(this.socialButton1);
-            this.Controls.Add(this.materialButton1);
-            this.Controls.Add(this.button1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Image = ((System.Drawing.Image)(resources.GetObject("$this.Image")));
-            this.MaximumSize = new System.Drawing.Size(580, 450);
-            this.MinimumSize = new System.Drawing.Size(580, 450);
-            this.Name = "MainMenu";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "File Converter";
-            this.Load += new System.EventHandler(this.MainMenu_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(9F, 21F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(580, 450);
+            Controls.Add(buttonReset);
+            Controls.Add(buttonDescargas);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(materialComboBox1);
+            Controls.Add(socialButton1);
+            Controls.Add(materialButton1);
+            Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Image = (Image)resources.GetObject("$this.Image");
+            MaximumSize = new Size(580, 450);
+            MinimumSize = new Size(580, 450);
+            Name = "MainMenu";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "File Converter";
+            Load += MainMenu_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -1,4 +1,10 @@
 ﻿using FileConverter.Main.Complementaries;
+using iText.IO.Image;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using Patagames.Pdf;
+using Patagames.Pdf.Net;
 using ReaLTaiizor.Forms;
 using System.Diagnostics;
 using System.Drawing.Imaging;
@@ -8,12 +14,12 @@ namespace FileConverter.Main.Views
 {
     public partial class MainMenu : LostForm
     {
-        private string[] imgFileTypes = { ".jpeg", ".png", ".ico", ".gif", ".webp" };
+        private string[] imgFileTypes = { ".jpeg", ".png", ".ico", ".gif", ".webp", ".pdf" };
         private string[] videoFileTypes = { ".mp4", ".avi", ".webm", ".mkv", ".flv", ".vob", ".wmv", ".amv" };
-        private string[] audioFileTypes = { ".mp3", ".wav", ".wma"};
+        private string[] audioFileTypes = { ".mp3", ".wav", ".wma" };
         private Stream? fileStream;
         private string fileName;
-        OpenFileDialog openFileDialog;
+        private OpenFileDialog openFileDialog;
 
         public MainMenu()
         {
@@ -51,8 +57,8 @@ namespace FileConverter.Main.Views
             openFileDialog.Multiselect = false;
             openFileDialog.Filter =
                 "Media " +
-                "(*.jpeg; *.png; *.ico; *.gif; *.webp; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma)" +
-                "| *.jpeg; *.png; *.ico; *.gif; *.webp; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma";
+                "(*.jpeg; *.png; *.ico; *.gif; *.webp; *.pdf; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma)" +
+                "| *.jpeg; *.png; *.ico; *.gif; *.pdf; *.webp; *.avi; *.mp4; *.webm; *.mkv; *.flv; *.vob; *.wmv; *.amv; *.mp3; *.wav; *.wma";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 materialComboBox1.Enabled = true;
@@ -97,28 +103,83 @@ namespace FileConverter.Main.Views
                 {
                     if (imgFileTypes.Contains(convSelected))
                     {
-                        Bitmap b = (Bitmap)Bitmap.FromStream(fileStream);
+                        if (label1.Text.Substring(label1.Text.LastIndexOf('.')) != ".pdf")
+                        {
+                            Bitmap b = (Bitmap)Bitmap.FromStream(fileStream);
 
-                        if (convSelected == ".png")
-                        {
-                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Png);
+                            if (convSelected == ".png")
+                            {
+                                b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Png);
+                            }
+                            else if (convSelected == ".jpeg")
+                            {
+                                b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Jpeg);
+                            }
+                            else if (convSelected == ".ico")
+                            {
+                                b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Icon);
+                            }
+                            else if (convSelected == ".gif")
+                            {
+                                b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Gif);
+                            }
+                            else if (convSelected == ".webp")
+                            {
+                                b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Webp);
+                            }
+                            else if (convSelected == ".pdf")
+                            {
+                                ImageData imageData = ImageDataFactory.Create(openFileDialog.FileName);
+
+                                iText.Kernel.Pdf.PdfDocument pdfDocument = new iText.Kernel.Pdf.PdfDocument(new PdfWriter(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected));
+                                Document document = new Document(pdfDocument);
+
+                                iText.Layout.Element.Image image = new iText.Layout.Element.Image(imageData);
+                                image.SetWidth(pdfDocument.GetDefaultPageSize().GetWidth() - 50);
+                                image.SetAutoScaleHeight(true);
+
+                                document.Add(image);
+                                pdfDocument.Close();
+                            } 
                         }
-                        else if (convSelected == ".jpeg")
+                        else
                         {
-                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Jpeg);
+                            PdfCommon.Initialize();
+                            using (var doc = Patagames.Pdf.Net.PdfDocument.Load(openFileDialog.FileName))
+                            {
+                                int i = 0;
+                                foreach (var page in doc.Pages)
+                                {
+                                    foreach (var obj in page.PageObjects)
+                                    {
+                                        var imageObject = obj as PdfImageObject;
+                                        if (imageObject == null) continue;
+                                        Bitmap b = (Bitmap)imageObject.Bitmap.GetImage();
+                                        if (convSelected == ".png")
+                                        {
+                                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + i + convSelected, ImageFormat.Png);
+                                        }
+                                        else if (convSelected == ".jpeg")
+                                        {
+                                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + i + convSelected, ImageFormat.Jpeg);
+                                        }
+                                        else if (convSelected == ".ico")
+                                        {
+                                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + i + convSelected, ImageFormat.Icon);
+                                        }
+                                        else if (convSelected == ".gif")
+                                        {
+                                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + i + convSelected, ImageFormat.Gif);
+                                        }
+                                        else if (convSelected == ".webp")
+                                        {
+                                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + i + convSelected, ImageFormat.Webp);
+                                        }
+                                        i++;
+                                    }
+                                }
+                            }
                         }
-                        else if (convSelected == ".ico")
-                        {
-                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Icon);
-                        }
-                        else if (convSelected == ".gif")
-                        {
-                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Gif);
-                        }
-                        else if (convSelected == ".webp")
-                        {
-                            b.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, ImageFormat.Webp);
-                        } 
                     }
                     else if (videoFileTypes.Contains(convSelected))
                     {
@@ -136,7 +197,7 @@ namespace FileConverter.Main.Views
                                 );
                         ConvertVideo(outputFile, convSelected);
                     }
-                     
+
 
 
                     label2.Visible = true;
@@ -191,7 +252,7 @@ namespace FileConverter.Main.Views
         {
             if (File.Exists(outputFile))
             {
-                File.Delete(outputFile); 
+                File.Delete(outputFile);
             }
             var conversion = await FFmpeg.Conversions.FromSnippet.Convert(openFileDialog.FileName, outputFile);
             if (convSelected == ".amv")
