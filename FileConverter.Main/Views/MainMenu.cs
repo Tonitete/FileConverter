@@ -1,8 +1,4 @@
 ﻿using FileConverter.Main.Complementaries;
-using iText.IO.Image;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
 using Patagames.Pdf;
 using Patagames.Pdf.Net;
 using ReaLTaiizor.Forms;
@@ -129,23 +125,30 @@ namespace FileConverter.Main.Views
                             }
                             else if (convSelected == ".pdf")
                             {
-                                ImageData imageData = ImageDataFactory.Create(openFileDialog.FileName);
-
-                                iText.Kernel.Pdf.PdfDocument pdfDocument = new iText.Kernel.Pdf.PdfDocument(new PdfWriter(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected));
-                                Document document = new Document(pdfDocument);
-
-                                iText.Layout.Element.Image image = new iText.Layout.Element.Image(imageData);
-                                image.SetWidth(pdfDocument.GetDefaultPageSize().GetWidth() - 50);
-                                image.SetAutoScaleHeight(true);
-
-                                document.Add(image);
-                                pdfDocument.Close();
+                                PdfCommon.Initialize();
+                                using (var doc = PdfDocument.CreateNew())
+                                {
+                                    using (PdfBitmap pdfBitmap = PdfBitmap.FromBitmap(b))
+                                    {
+                                        var imageObject = PdfImageObject.Create(doc, pdfBitmap, 0, 0);
+                                        var size = new FS_SIZEF()
+                                        {
+                                            Width = pdfBitmap.Width * 72 / 300f,
+                                            Height = pdfBitmap.Height * 72 / 300f
+                                        };
+                                        var page = doc.Pages.InsertPageAt(0, size);
+                                        page.PageObjects.Add(imageObject);
+                                        imageObject.Matrix = new FS_MATRIX(size.Width, 0, 0, size.Height, 0, 0);
+                                        page.GenerateContent();
+                                    }
+                                    doc.Save(Properties.Settings.Default.DownloadPath + @"\" + fileName + convSelected, Patagames.Pdf.Enums.SaveFlags.NoIncremental);
+                                }
                             } 
                         }
                         else
                         {
                             PdfCommon.Initialize();
-                            using (var doc = Patagames.Pdf.Net.PdfDocument.Load(openFileDialog.FileName))
+                            using (var doc = PdfDocument.Load(openFileDialog.FileName))
                             {
                                 int i = 0;
                                 foreach (var page in doc.Pages)
